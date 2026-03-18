@@ -1,0 +1,4 @@
+local env = (type(getgenv) == "function" and getgenv())
+         or (type(getfenv) == "function" and getfenv())
+         or _G or _ENV
+env.safeclipboard=function(a)a=tostring(a)if type(setclipboard)=="function"then setclipboard(a)return true end;if type(toclipboard)=="function"then toclipboard(a)return true end;if type(writeclipboard)=="function"then writeclipboard(a)return true end;local b=type(getgenv)=="function"and getgenv()or _G;if type(b.setclipboard)=="function"then b.setclipboard(a)return true end;if type(b.toclipboard)=="function"then b.toclipboard(a)return true end;if type(b.writeclipboard)=="function"then b.writeclipboard(a)return true end;if type(Clipboard)=="table"and type(Clipboard.set)=="function"then Clipboard.set(a)return true end;warn("Clipboard not supported in this executor")return false end
